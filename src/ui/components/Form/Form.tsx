@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, TouchableOpacity } from "react-native";
 import ResultImc from "../../partials/ResultImc/ResultImc";
+import { FormStyles } from "../../styles/Form/Form.styles";
 
 const Form: React.FC = () => {
   const [height, setHeight] = useState<number | null>(null);
@@ -38,23 +39,27 @@ const Form: React.FC = () => {
   };
 
   return (
-    <View>
-      <View>
-        <Text>Altura</Text>
+    <View style={FormStyles.FormContext}>
+      <View style={FormStyles.form}>
+        <Text style={FormStyles.FormLabel}>Altura</Text>
         <TextInput
           onChangeText={(e) => setHeight(Number(e))}
           value={height?.toString()}
           placeholder="Ex. 1.75"
           keyboardType="numeric"
+          style={FormStyles.FormInput}
         />
-        <Text>Peso</Text>
+        <Text style={FormStyles.FormLabel}>Peso</Text>
         <TextInput
           placeholder="Ex. 75.365"
           keyboardType="numeric"
           onChangeText={(e) => setWeight(Number(e))}
           value={weight?.toString()}
+          style={FormStyles.FormInput}
         />
-        <Button title={textButton} onPress={handleOnPress} />
+        <TouchableOpacity onPress={handleOnPress} style={FormStyles.ButtonCalculator}>
+          <Text style={FormStyles.TextButtonCalculator}>{textButton}</Text>
+        </TouchableOpacity>
       </View>
       <ResultImc ResultImc={imc} messageResultImc={messageImc} />
     </View>

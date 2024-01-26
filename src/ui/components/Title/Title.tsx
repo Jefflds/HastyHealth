@@ -1,4 +1,5 @@
 import { View, Text } from "react-native";
+import { TitleStyles } from "../../styles/Title/Title.styles";
 
 type TitleProps = {
   titleContent: string;
@@ -6,8 +7,8 @@ type TitleProps = {
 
 const Title: React.FC<TitleProps> = ({ titleContent }) => {
   return (
-    <View>
-      <Text>{titleContent}</Text>
+    <View style={TitleStyles.boxTitle}>
+      <Text style={TitleStyles.textTitle}>{titleContent}</Text>
     </View>
   );
 };
