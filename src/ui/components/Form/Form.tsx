@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, Button } from "react-native";
 import ResultImc from "../../partials/ResultImc/ResultImc";
 
 const Form: React.FC = () => {
@@ -49,11 +49,7 @@ const Form: React.FC = () => {
           onChangeText={(e) => setWeight(Number(e))}
           value={weight?.toString()}
         />
-        <TouchableOpacity onPress={handleOnPress}>
-          <View>
-            <Text>{textButton}</Text>
-          </View>
-        </TouchableOpacity>
+        <Button title={textButton} onPress={handleOnPress} />
       </View>
       <ResultImc ResultImc={imc} messageResultImc={messageImc} />
     </View>
