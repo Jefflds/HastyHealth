@@ -8,21 +8,26 @@ const Form: React.FC = () => {
   const [messageImc, setMessageImc] = useState<string>(
     "Preencha o Peso e a Altura"
   );
-  const [imc, setImc] = useState<number | null>(null);
+  const [imc, setImc] = useState<number | string | null>(null);
   const [textButton, setTextButton] = useState<string>("Calcular");
 
-  const ImcCalculator = (w: number, h: number) => {
+  const calculateImc = (w: number, h: number) => {
     if (weight && height) {
+      let squaredHeight;
       if (h > 2) {
-        return setImc(w / ((h / 100) * (h / 100)));
+        squaredHeight = (h / 100) * (h / 100);
       } else {
-        return setImc(w / (h * h));
+        squaredHeight = h * h;
       }
+
+      const imcResultCalculated = w / squaredHeight;
+      const formattedImc = imcResultCalculated.toFixed(2);
+      setImc(formattedImc);
     }
   };
   const handleOnPress = () => {
     setTextButton("Calculando...");
-    ImcCalculator(Number(weight), Number(height));
+    calculateImc(Number(weight), Number(height));
     setMessageImc("Seu IMC é Igual A: ");
     setTimeout(() => {
       setTextButton("Calcular Novamente");
