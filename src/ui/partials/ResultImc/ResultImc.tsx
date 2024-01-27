@@ -1,4 +1,5 @@
 import { View, Text } from "react-native"
+import { ResultImcStyles } from "../../styles/ResultImc/ResultImc.styles";
 
 type ResultImcProps = {
     messageResultImc: string;
@@ -7,9 +8,9 @@ type ResultImcProps = {
 
 const ResultImc: React.FC<ResultImcProps> = ({messageResultImc, ResultImc}) => {
   return (
-    <View>
-        <Text>{messageResultImc}</Text>
-        <Text>{ResultImc}</Text>
+    <View style={ResultImcStyles.ResultImc}>
+        <Text style={ResultImcStyles.information}>{messageResultImc}</Text>
+        <Text style={ResultImcStyles.numberImc}>{ResultImc}</Text>
     </View>
   )
 }
