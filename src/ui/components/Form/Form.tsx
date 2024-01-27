@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Vibration} from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Vibration,
+  Pressable,
+  Keyboard
+} from "react-native";
 import ResultImc from "../../partials/ResultImc/ResultImc";
 import { FormStyles } from "../../styles/Form/Form.styles";
 
@@ -30,7 +38,7 @@ const Form: React.FC = () => {
 
   const verificationImc = () => {
     if (imc == null) {
-      Vibration.vibrate()
+      Vibration.vibrate();
       setErrorMessage("Campo Obrigatório*");
     }
   };
@@ -40,7 +48,7 @@ const Form: React.FC = () => {
       verificationImc();
     } else {
       setTextButton("Calculando...");
-      calculateImc(Number(weight), Number(height));
+      calculateImc(weight, height);
       setHeight(null);
       setWeight(null);
       setMessageImc("Seu IMC é Igual A: ");
@@ -55,12 +63,12 @@ const Form: React.FC = () => {
   };
 
   return (
-    <View style={FormStyles.FormContext}>
+    <Pressable style={FormStyles.FormContext} onPress={Keyboard.dismiss}>
       <View style={FormStyles.form}>
         <Text style={FormStyles.FormLabel}>Altura</Text>
         <Text style={FormStyles.errorMessage}>{errormMessage}</Text>
         <TextInput
-          onChangeText={(e) => setHeight(Number(e))}
+          onChangeText={(e) => setHeight(Number(e.replace(",", ".")))}
           value={height?.toString()}
           placeholder="Ex. 1.75"
           keyboardType="numeric"
@@ -71,7 +79,7 @@ const Form: React.FC = () => {
         <TextInput
           placeholder="Ex. 75.365"
           keyboardType="numeric"
-          onChangeText={(e) => setWeight(Number(e))}
+          onChangeText={(e) => setWeight(Number(e.replace(",", ".")))}
           value={weight?.toString()}
           style={FormStyles.FormInput}
         />
@@ -84,7 +92,7 @@ const Form: React.FC = () => {
         </TouchableOpacity>
       </View>
       <ResultImc ResultImc={imc} messageResultImc={messageImc} />
-    </View>
+    </Pressable>
   );
 };
 
