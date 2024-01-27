@@ -7,7 +7,6 @@ export const FormStyles = StyleSheet.create({
     bottom: 0,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "space-around",
     paddingTop: 15,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -29,7 +28,7 @@ export const FormStyles = StyleSheet.create({
     backgroundColor: "#f6f6f6",
     height: 40,
     margin: 12,
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   ButtonCalculator: {
     borderRadius: 50,
@@ -40,15 +39,20 @@ export const FormStyles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
     marginLeft: 12,
-    margin: 30
+    margin: 30,
   },
   TextButtonCalculator: {
     fontSize: 20,
-    color: "#fff"
-  }, errorMessage: {
+    color: "#fff",
+  },
+  errorMessage: {
     fontSize: 12,
     color: "red",
     fontWeight: "bold",
-    paddingLeft: 20
+    paddingLeft: 20,
+  },
+  exhibitionResultIMC: {
+    width: "100%",
+    height: "50%",
   }
 });

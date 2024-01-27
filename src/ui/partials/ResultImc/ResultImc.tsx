@@ -11,21 +11,19 @@ const ResultImc: React.FC<ResultImcProps> = ({
   ResultImc,
 }) => {
   const onShare = async () => {
-    const result = await Share.share({
+    await Share.share({
       message: `Meu IMC é de ${ResultImc}`,
     });
   };
   return (
     <View style={ResultImcStyles.ResultImc}>
-      <View style={ResultImcStyles.boxShareButton}>
-        {ResultImc != null ? (
-          <TouchableOpacity onPress={onShare} style={ResultImcStyles.shared}>
-            <Text style={ResultImcStyles.sharedText}>Share</Text>
-          </TouchableOpacity>
-        ) : null}
-      </View>
       <Text style={ResultImcStyles.information}>{messageResultImc}</Text>
       <Text style={ResultImcStyles.numberImc}>{ResultImc}</Text>
+      <View style={ResultImcStyles.boxShareButton}>
+        <TouchableOpacity onPress={onShare} style={ResultImcStyles.shared}>
+          <Text style={ResultImcStyles.sharedText}>Share</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
