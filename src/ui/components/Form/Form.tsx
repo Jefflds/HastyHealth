@@ -7,6 +7,7 @@ import {
   Vibration,
   Pressable,
   Keyboard,
+  FlatList,
 } from "react-native";
 import ResultImc from "../../partials/ResultImc/ResultImc";
 import { FormStyles } from "../../styles/Form/Form.styles";
@@ -20,6 +21,7 @@ const Form: React.FC = () => {
   const [imc, setImc] = useState<number | string | null>(null);
   const [textButton, setTextButton] = useState<string>("Calcular");
   const [errormMessage, setErrorMessage] = useState<string | null>(null);
+  const [imcList, setImcList] = useState<{ id: number; imc: string }[]>([]);
 
   const calculateImc = (w: number, h: number) => {
     if (weight && height) {
@@ -32,6 +34,10 @@ const Form: React.FC = () => {
 
       const imcResultCalculated = w / squaredHeight;
       const formattedImc = imcResultCalculated.toFixed(2);
+      setImcList((arr) => [
+        ...arr,
+        { id: new Date().getTime(), imc: formattedImc },
+      ]);
       setImc(formattedImc);
     }
   };
@@ -95,14 +101,22 @@ const Form: React.FC = () => {
       ) : (
         <View style={FormStyles.exhibitionResultIMC}>
           <ResultImc ResultImc={imc} messageResultImc={messageImc} />
-          <TouchableOpacity
-            onPress={handleOnPress}
-            style={FormStyles.ButtonCalculator}
-          >
-            <Text style={FormStyles.TextButtonCalculator}>{textButton}</Text>
-          </TouchableOpacity>
         </View>
       )}
+      <FlatList
+        style={FormStyles.listasImc}
+        data={imcList.reverse()}
+        renderItem={({ item }) => {
+          return (
+            <Text style={FormStyles.resultImcItem}>
+              <Text style={FormStyles.textResultItemList}>Resultado IMC = </Text>
+              {item.imc}
+            </Text>
+          );    
+        }}
+        keyExtractor={(item) => item.id.toString()}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };

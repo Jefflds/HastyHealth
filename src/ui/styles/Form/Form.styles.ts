@@ -54,5 +54,18 @@ export const FormStyles = StyleSheet.create({
   exhibitionResultIMC: {
     width: "100%",
     height: "50%",
+  },
+  listasImc: {
+    marginTop: 20,
+  },
+  resultImcItem: {
+    fontSize: 24,
+    color: "red",
+    height: 50,
+    width: "100%",
+    paddingRight: 20
+  },
+  textResultItemList: {
+    fontSize: 16
   }
 });
